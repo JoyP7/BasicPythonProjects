@@ -1,10 +1,13 @@
 import string
+# Input the file
 fname = input("Enter a file name: ")
 try:
     fhand = open(fname)
 except:
     print("There is no such file:", fname)
     exit
+
+# Count every single words in the file
 counts = dict()
 for line in fhand:
     line = line.translate(str.maketrans('', '', string.punctuation))
@@ -15,11 +18,14 @@ for line in fhand:
             counts[i] = 1
         else:
             counts[i] += 1
+
+# Convert dictionary to a list and sort it by its values.
 lst = list()
 for key, val in list(counts.items()):
     lst.append((val, key))
 lst.sort(reverse = True)
 
+# Return the top 10 frequent words
 for key, val in lst[:10]:
     print (val, key)
         
